@@ -1,0 +1,141 @@
+DROP DATABASE IF EXISTS DekmaInstitute;
+CREATE DATABASE IF NOT EXISTS DekmaInstitute;
+
+USE DekmaInstitute;
+
+CREATE TABLE IF NOT EXISTS Employee(
+                                       EID  VARCHAR(11),
+                                       NIC VARCHAR(11) ,
+                                       name VARCHAR(40),
+                                       address TEXT,
+                                       contact VARCHAR(12),
+                                       email  VARCHAR(100),
+                                       salary DOUBLE,
+                                       CONSTRAINT PRIMARY KEY(EID)
+
+);
+
+insert into Employee values('E001','213243245','kamal','galle','456436','fdsgdfg','435345');
+
+
+CREATE TABLE IF NOT EXISTS User(
+                                   user_name VARCHAR(20),
+                                   password VARCHAR(8),
+                                   EID  VARCHAR(11),
+                                   CONSTRAINT PRIMARY KEY(user_name),
+                                   CONSTRAINT FOREIGN KEY(EID) REFERENCES Employee(EID)
+                                       ON UPDATE CASCADE
+                                       ON DELETE CASCADE
+);
+
+
+CREATE TABLE IF NOT EXISTS Student(
+                                      SID VARCHAR(8),
+                                      EID  VARCHAR(11),
+                                      NIC VARCHAR(11) ,
+                                      subject VARCHAR(20),
+                                      exam_year VARCHAR(12),
+                                      name VARCHAR(40),
+                                      address TEXT,
+                                      contact VARCHAR(12),
+                                      email  VARCHAR(100),
+                                      CONSTRAINT PRIMARY KEY(SID),
+                                      CONSTRAINT FOREIGN KEY(EID) REFERENCES Employee(EID)
+                                          ON UPDATE CASCADE
+                                          ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS Subject(
+                                      SUBID  VARCHAR(11),
+                                      SubName  VARCHAR(30),
+                                      CONSTRAINT PRIMARY KEY(SubID)
+);
+
+insert into Subject values ('SUB001','maths');
+insert into Subject values ('SUB002','art');
+insert into Subject values ('SUB003','prf');
+
+CREATE TABLE IF NOT EXISTS Student_Result(
+                                             RID VARCHAR(11),
+                                             SID VARCHAR(11),
+                                             SUBID VARCHAR(15),
+                                             result VARCHAR(6),
+                                             CONSTRAINT PRIMARY KEY(RID),
+                                             CONSTRAINT FOREIGN KEY(SID) REFERENCES Student(SID)
+                                                 ON UPDATE CASCADE
+                                                 ON DELETE CASCADE,
+                                             CONSTRAINT FOREIGN KEY(SUBID) REFERENCES Subject(SUBID)
+                                                 ON UPDATE CASCADE
+                                                 ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS Teacher(
+                                      TID VARCHAR(11),
+                                      SUBID VARCHAR(15),
+                                      NIC VARCHAR(11),
+                                      name VARCHAR(40),
+                                      address TEXT,
+                                      contact VARCHAR(12),
+                                      email  VARCHAR(100),
+                                      salary DOUBLE,
+                                      CONSTRAINT PRIMARY KEY(TID),
+                                      CONSTRAINT FOREIGN KEY(SUBID) REFERENCES Subject(SUBID)
+                                          ON UPDATE CASCADE
+                                          ON DELETE CASCADE
+);
+
+insert into Teacher values ('T001','SUB001','15445457454','kamal','galle','074585758','kamal@gmail.com','25000');
+
+CREATE TABLE IF NOT EXISTS Teacher_Manage_Student(
+                                                     SID VARCHAR(11),
+                                                     TID VARCHAR(11),
+                                                     CONSTRAINT FOREIGN KEY(SID) REFERENCES Student(SID)
+                                                         ON UPDATE CASCADE
+                                                         ON DELETE CASCADE,
+                                                     CONSTRAINT FOREIGN KEY(TID) REFERENCES Teacher(TID)
+                                                         ON UPDATE CASCADE
+                                                         ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS Student_Attendance(
+                                                 SID VARCHAR(11),
+                                                 date Date,
+                                                 time VARCHAR(6),
+                                                 CONSTRAINT FOREIGN KEY(SID) REFERENCES Student(SID)
+                                                     ON UPDATE CASCADE
+                                                     ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS Batch(
+                                    BID VARCHAR(10),
+                                    year VARCHAR(10),
+                                    SID VARCHAR(11),
+                                    CONSTRAINT PRIMARY KEY(BID),
+                                    CONSTRAINT FOREIGN KEY(SID) REFERENCES Student(SID)
+                                        ON UPDATE CASCADE
+                                        ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS Student_Batch(
+                                            SID VARCHAR(11),
+                                            BID VARCHAR(10),
+                                            CONSTRAINT FOREIGN KEY(SID) REFERENCES Student(SID)
+                                                ON UPDATE CASCADE
+                                                ON DELETE CASCADE,
+                                            CONSTRAINT FOREIGN KEY(BID) REFERENCES Batch(BID)
+                                                ON UPDATE CASCADE
+                                                ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS Payments(
+                                       SID VARCHAR(11),
+                                       CardID VARCHAR(10),
+                                       amount DOUBLE,
+                                       date DATE,
+                                       payment_months VARCHAR(20),
+                                       time VARCHAR(30),
+                                       CONSTRAINT PRIMARY KEY(CardID),
+                                       CONSTRAINT FOREIGN KEY(SID) REFERENCES Student(SID)
+                                           ON UPDATE CASCADE
+                                           ON DELETE CASCADE
+);

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="pane" prefHeight="800.0" prefWidth="1149.0" style="-fx-background-color: '#BBDEFB';" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.StudentMS.controller.ManageStudentsFormController">
+   <children>
+      <TableView fx:id="Student" layoutX="88.0" layoutY="463.0" prefHeight="300.0" prefWidth="975.0">
+        <columns>
+          <TableColumn fx:id="StudentId" prefWidth="81.0" text="SID" />
+          <TableColumn fx:id="NIC" minWidth="9.0" prefWidth="84.0" text="NIC" />
+            <TableColumn fx:id="Name" prefWidth="77.0" text="Name" />
+            <TableColumn fx:id="Address" prefWidth="103.0" text="Address" />
+            <TableColumn fx:id="Email" prefWidth="108.0" text="Email" />
+            <TableColumn fx:id="CNumber" prefWidth="141.0" text="Contact No" />
+            <TableColumn fx:id="EY" minWidth="5.0" prefWidth="170.0" text="Exam Year" />
+            <TableColumn fx:id="Stream" prefWidth="209.0" text="Stream" />
+        </columns>
+      </TableView>
+      <Text fill="#221f1f" layoutX="538.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Students">
+         <font>
+            <Font name="System Bold" size="28.0" />
+         </font>
+      </Text>
+      <JFXTextField fx:id="Search" layoutX="88.0" layoutY="406.0" onAction="#searchOnAction" prefHeight="50.0" prefWidth="180.0" promptText="Search Students Name Or SID" style="-fx-background-color: white;" />
+      <Text layoutX="305.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student ID :" />
+      <JFXTextField fx:id="txtID" layoutX="387.0" layoutY="179.0" onKeyReleased="#stuOnKeyReleased" prefHeight="25.0" prefWidth="128.0" promptText="Student ID" />
+      <Text layoutX="740.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NIC:" />
+      <JFXTextField fx:id="txtNIC" layoutX="778.0" layoutY="171.0" onKeyReleased="#stuOnKeyReleased" prefHeight="25.0" prefWidth="164.0" promptText="NIC" />
+      <Text layoutX="305.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:" />
+      <JFXTextField fx:id="txtName" layoutX="351.0" layoutY="215.0" onKeyReleased="#stuOnKeyReleased" prefHeight="25.0" prefWidth="164.0" promptText="Name" />
+      <Text layoutX="740.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address:" />
+      <JFXTextField fx:id="txtAdress" layoutX="807.0" layoutY="208.0" onKeyReleased="#stuOnKeyReleased" promptText="Address" />
+      <Text layoutX="305.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:" />
+      <JFXTextField fx:id="txtEmail" layoutX="352.0" layoutY="255.0" onKeyReleased="#stuOnKeyReleased" prefHeight="25.0" prefWidth="164.0" promptText="Email" />
+      <Text layoutX="732.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact No:" />
+      <JFXTextField fx:id="txtCNo" layoutX="807.0" layoutY="249.0" onKeyReleased="#stuOnKeyReleased" promptText="Contact No" />
+      <Text layoutX="307.0" layoutY="308.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exam Year:" />
+      <JFXTextField fx:id="txtEY" layoutX="367.0" layoutY="291.0" onKeyReleased="#stuOnKeyReleased" prefHeight="25.0" prefWidth="152.0" promptText="Exam Year" />
+      <Text layoutX="732.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stream" />
+      <JFXTextField fx:id="txtStream" layoutX="807.0" layoutY="285.0" onKeyReleased="#stuOnKeyReleased" promptText="Stream" />
+      <JFXButton layoutX="787.0" layoutY="406.0" onAction="#btnAddStudent" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #2196F3;" text="Add " />
+      <JFXButton layoutX="872.0" layoutY="406.0" onAction="#btnUpdateStudent" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #43A047;" text="Update " />
+      <JFXButton layoutX="963.0" layoutY="406.0" onAction="#btnDeleteStudent" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #F44336;" text="Delete" />
+      <JFXComboBox fx:id="combEmployeeId" layoutX="307.0" layoutY="143.0" promptText="Employee ID" />
+      <JFXButton layoutX="270.0" layoutY="406.0" onAction="#btnSearch" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #2196F3;" text="Search" />
+   </children>
+</AnchorPane>

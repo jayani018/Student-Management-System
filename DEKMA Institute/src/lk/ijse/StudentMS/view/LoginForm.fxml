@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1400.0" style="-fx-background-color: #56ccf2;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.StudentMS.controller.LoginFormController">
+   <children>
+      <Pane fx:id="pane3333" layoutX="361.0" layoutY="67.0" opacity="0.54" prefHeight="661.0" prefWidth="672.0" style="-fx-background-color: #95a5a6; -fx-background-radius: 32px; -fx-border-radius: 35px;" />
+      <Text fill="#1b1a1a" layoutX="479.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login  Account" wrappingWidth="441.66015625">
+         <font>
+            <Font name="System Bold" size="59.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtPassword" layoutX="546.0" layoutY="338.0" onKeyReleased="#loginAcOnKeyRelesed" prefHeight="39.0" prefWidth="307.0" promptText="Password" />
+      <TextField fx:id="txtName" layoutX="546.0" layoutY="273.0" onKeyReleased="#loginAcOnKeyRelesed" prefHeight="39.0" prefWidth="307.0" promptText="Name" />
+      <Text fill="#f8f6f6" layoutX="685.0" layoutY="564.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OR">
+         <font>
+            <Font size="18.0" />
+         </font></Text>
+      <JFXButton layoutX="547.0" layoutY="579.0" onAction="#CreateNAOnAction" prefHeight="52.0" prefWidth="317.0" style="-fx-background-color: #4DED30; -fx-border-radius: 80; -fx-background-radius: 15;" text="Create New Account" />
+      <JFXButton fx:id="btnLogin" layoutX="544.0" layoutY="475.0" onAction="#LoginOnAction" prefHeight="52.0" prefWidth="317.0" style="-fx-background-color: #2f80ed; -fx-background-radius: 15; -fx-border-radius: 80;" text="Login" />
+      <JFXButton layoutX="547.0" layoutY="397.0" onAction="#FogotPassword" text="Fogot Password" textFill="#1045f5">
+         <font>
+            <Font size="16.0" />
+         </font></JFXButton>
+      <Label fx:id="lblNameWarning" layoutX="546.0" layoutY="312.0" textFill="RED" />
+      <Label fx:id="lblPasswordWarning" layoutX="546.0" layoutY="377.0" prefHeight="17.0" prefWidth="3.0" textFill="#ee1e1e" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="pane" prefHeight="800.0" prefWidth="1149.0" style="-fx-background-color: #BBDEFB;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.StudentMS.controller.StudentAttendanceFormController">
+   <children>
+      <TableView fx:id="tblStudentAttendance" layoutX="80.0" layoutY="416.0" prefHeight="341.0" prefWidth="975.0">
+         <columns>
+            <TableColumn fx:id="Date" prefWidth="69.0" text="Date" />
+            <TableColumn fx:id="Time" prefWidth="86.0" text="Time" />
+         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <Text fill="#1b1a1a" layoutX="407.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student Attendance">
+         <font>
+            <Font name="System Bold" size="26.0" />
+         </font></Text>
+      <Text layoutX="570.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date:" />
+      <Text layoutX="310.0" layoutY="248.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time:" />
+      <JFXTextField fx:id="txtTime" layoutX="363.0" layoutY="231.0" promptText="Time" />
+      <JFXComboBox fx:id="combStudentId" layoutX="312.0" layoutY="170.0" promptText="Student ID" />
+      <JFXButton layoutX="741.0" layoutY="354.0" onAction="#btnAddSA" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #2196F3;" text="Add " />
+      <JFXButton layoutX="849.0" layoutY="354.0" onAction="#btnUpdateSA" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #43A047;" text="Update " />
+      <JFXButton layoutX="956.0" layoutY="353.0" onAction="#btnDeleteSA" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #F44336;" text="Delete" />
+      <JFXTextField fx:id="Search" layoutX="80.0" layoutY="354.0" onAction="#searchOnaction" prefHeight="50.0" prefWidth="183.0" promptText="Search Batch" style="-fx-background-color: #FAFAFA;" />
+      <JFXDatePicker fx:id="txtdate" layoutX="607.0" layoutY="170.0" promptText="Date" />
+      <JFXButton layoutX="262.0" layoutY="354.0" onAction="#btnSearch" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #2196F3;" text="Seaarch" />
+   </children>
+</AnchorPane>

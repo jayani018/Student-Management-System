@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXToggleButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="pane" prefHeight="800.0" prefWidth="1149.0" style="-fx-background-color: #BBDEFB;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.StudentMS.controller.TimeSheduleFormController">
+   <children>
+      <Text layoutX="410.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time Shedule Management">
+         <font>
+            <Font name="System Bold" size="29.0" />
+         </font>
+      </Text>
+      <TableView fx:id="TimeTable" layoutX="109.0" layoutY="471.0" prefHeight="300.0" prefWidth="975.0">
+         <columns>
+            <TableColumn fx:id="Date" prefWidth="94.0" text="Date" />
+            <TableColumn fx:id="Time" prefWidth="72.0" text="Time" />
+            <TableColumn fx:id="Subject" prefWidth="118.0" text="Subject" />
+            <TableColumn fx:id="Teacher" prefWidth="123.0" text="Teacher " />
+            <TableColumn fx:id="Availability" prefWidth="92.0" text="Availability" />
+         </columns>
+      </TableView>
+      <Text layoutX="364.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date:" />
+      <JFXTextField fx:id="txtDate" layoutX="406.0" layoutY="247.0" promptText="Date" />
+      <Text layoutX="669.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time" />
+      <JFXTextField fx:id="txtTime" layoutX="709.0" layoutY="247.0" promptText="Time" />
+      <JFXComboBox fx:id="combSubject" layoutX="364.0" layoutY="172.0" promptText="Subject" />
+      <JFXComboBox fx:id="combTeacher" layoutX="667.0" layoutY="176.0" promptText="Teacher" />
+      <JFXToggleButton layoutX="357.0" layoutY="306.0" text="Availability" />
+      <JFXButton layoutX="758.0" layoutY="412.0" onAction="#btnAddTSM" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #2196F3;" text="Add " />
+      <JFXButton layoutX="872.0" layoutY="412.0" onAction="#btnUpdateTSM" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #43A047;" text="Update " />
+      <JFXButton layoutX="984.0" layoutY="412.0" onAction="#btnDeleteTSM" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #F44336;" text="Delete" />
+      <JFXTextField fx:id="Search" layoutX="109.0" layoutY="412.0" onAction="#searchOnAction" prefHeight="50.0" prefWidth="184.0" promptText="Search Teacher" style="-fx-background-color: white;" />
+      <JFXButton layoutX="291.0" layoutY="412.0" onAction="#btnSearch" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #2196F3;" text="Search" />
+   </children>
+</AnchorPane>

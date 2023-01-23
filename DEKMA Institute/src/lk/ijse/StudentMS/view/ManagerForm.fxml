@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="fullPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1400.0" style="-fx-background-color: #56ccf2;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.StudentMS.controller.ManagerFormController">
+   <children>
+      <AnchorPane fx:id="dashBordPane" layoutX="-1.0" prefHeight="800.0" prefWidth="249.0" style="-fx-background-color: #42A5F5;">
+         <children>
+            <JFXButton layoutX="27.0" layoutY="520.0" onAction="#btnLogout" prefHeight="35.0" prefWidth="195.0" style="-fx-background-color: #1A237F;" text="Logout" textFill="#f8f4f4" />
+            <JFXButton layoutX="27.0" layoutY="460.0" onAction="#btnMResult" prefHeight="35.0" prefWidth="195.0" style="-fx-background-color: #1A237F;" text="Manage Results" textFill="#eee7e7" />
+            <JFXButton layoutX="27.0" layoutY="401.0" onAction="#btnTimeSM" prefHeight="35.0" prefWidth="195.0" style="-fx-background-color: #1A237F;" text="Time Shedule Management" textFill="#f8f1f1" />
+            <JFXButton layoutX="27.0" layoutY="345.0" onAction="#btnSAttendance" prefHeight="35.0" prefWidth="195.0" style="-fx-background-color: #1A237F;" text="Student Attendance" textFill="#f2eeee" />
+            <JFXButton layoutX="27.0" layoutY="289.0" onAction="#btnMPayments" prefHeight="35.0" prefWidth="195.0" style="-fx-background-color: #1A237F;" text="Manage Payments" textFill="#f8f6f6" />
+            <JFXButton layoutX="27.0" layoutY="234.0" onAction="#btnMSubject" prefHeight="35.0" prefWidth="195.0" style="-fx-background-color: #1A237F;" text="Manage Subjects" textFill="#fffefe" />
+            <JFXButton layoutX="27.0" layoutY="177.0" onAction="#btnMTeacher" prefHeight="35.0" prefWidth="195.0" style="-fx-background-color: #1A237F;" text="Manage Teachers" textFill="#fcf9f9" />
+            <JFXButton layoutX="27.0" layoutY="123.0" onAction="#btnMStudent" prefHeight="35.0" prefWidth="195.0" style="-fx-background-color: #1A237F;" text="Manage Students" textFill="#f5f3f3" />
+            <Text fill="#1b1a1a" layoutX="59.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manager">
+               <font>
+                  <Font name="System Bold" size="32.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="pane" layoutX="248.0" prefHeight="800.0" prefWidth="1149.0" style="-fx-background-color: #BBDDEFB;">
+         <children>
+            <ImageView fitHeight="543.0" fitWidth="838.0" layoutX="128.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/image/240_F_76023462_pbOtfPerndr3gt53MM8BbAuKdUR7GS5w.jpg" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
+   </children>
+</AnchorPane>

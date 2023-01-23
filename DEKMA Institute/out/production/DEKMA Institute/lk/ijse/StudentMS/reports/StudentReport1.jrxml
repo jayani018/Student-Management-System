@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="StudentReport1" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="eb913586-5149-47f2-96e3-1d6e5226dcae">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="dekma"/>
+	<queryString language="SQL">
+		<![CDATA[select*from payments;]]>
+	</queryString>
+	<field name="SID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="SID"/>
+		<property name="com.jaspersoft.studio.field.label" value="SID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+	</field>
+	<field name="CardID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="CardID"/>
+		<property name="com.jaspersoft.studio.field.label" value="CardID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+	</field>
+	<field name="amount" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="amount"/>
+		<property name="com.jaspersoft.studio.field.label" value="amount"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+	</field>
+	<field name="payment_months" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="payment_months"/>
+		<property name="com.jaspersoft.studio.field.label" value="payment_months"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+	</field>
+	<field name="time" class="java.sql.Time">
+		<property name="com.jaspersoft.studio.field.name" value="time"/>
+		<property name="com.jaspersoft.studio.field.label" value="time"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+	</field>
+	<group name="Group1">
+		<groupExpression><![CDATA[$F{CardID}]]></groupExpression>
+		<groupHeader>
+			<band height="33">
+				<textField>
+					<reportElement mode="Opaque" x="10" y="0" width="545" height="32" forecolor="#006699" backcolor="#E6E6E6" uuid="20de3457-bb0e-4d54-9203-f8276613b809"/>
+					<textElement>
+						<font size="24" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{CardID}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="-20" y="32" width="595" height="1" forecolor="#666666" uuid="bb70e3b4-fba4-4fb4-8ab2-0b9a2a30f332"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="c9436e76-3f57-4528-b4e4-9f16d05b0841"/>
+				<staticText>
+					<reportElement x="20" y="20" width="360" height="43" forecolor="#FFFFFF" uuid="07cc184d-a7af-4fd4-b836-fd16be9caee7"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Dekma Institute]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="b9fd5820-a455-4bb7-a267-71d7bc090614"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Student Payments]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="ea37a18a-22bb-482b-90cb-183aa7706507"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="10" y="0" width="128" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="4448da96-4e19-46d8-a780-b26fb9d04d52">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="32a3b0bf-5439-49bc-96aa-9e4363f5bf8c"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="130" y="0" width="146" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="58c697b4-27dd-414a-9f00-c28818a5c424">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9a8d47ba-cfc3-4f5b-858f-43b0c6e048ee"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Amount]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="276" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="c2c86e3f-f4eb-430d-bb63-86c5633ea88b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6154d2a0-19b9-4ba9-a822-1345e6fd5f96"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Payment_months]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="414" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="e250c8e2-39d1-4acb-ae96-0eaf66f9eb9d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="baa11ca4-a727-4a68-a921-eaff9ff6b9c1"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Time]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="ec64b8b5-c276-40d4-9990-702999604930"/>
+			</line>
+			<textField>
+				<reportElement x="60" y="0" width="78" height="20" uuid="404110dd-4beb-46d4-ac20-ba9286f48cb2">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="32a3b0bf-5439-49bc-96aa-9e4363f5bf8c"/>
+				</reportElement>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="0" width="96" height="20" uuid="e4d798ca-95fb-4705-84de-882e5619e248">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9a8d47ba-cfc3-4f5b-858f-43b0c6e048ee"/>
+				</reportElement>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{amount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="0" width="114" height="20" uuid="8992d6a3-00f4-4d55-b8d5-09a03b1bee9a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6154d2a0-19b9-4ba9-a822-1345e6fd5f96"/>
+				</reportElement>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{payment_months}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="440" y="0" width="112" height="20" uuid="ee8b5818-8e2c-4e99-9512-b0df1bdf4835">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="baa11ca4-a727-4a68-a921-eaff9ff6b9c1"/>
+				</reportElement>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{time}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="5a33df91-5201-4941-8a97-6ee094d5f5d8"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="71de0b6a-28b9-47cc-b2f0-bfc3810e7da9"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="440aa8b2-e10b-4e49-9e37-026e855b9fc7"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

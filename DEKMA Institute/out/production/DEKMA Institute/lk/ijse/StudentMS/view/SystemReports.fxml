@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="pane" prefHeight="800.0" prefWidth="1149.0" style="-fx-background-color: #BBDEFB;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.StudentMS.controller.SystemReportsController">
+   <children>
+      <Text layoutX="468.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="System Reports">
+         <font>
+            <Font name="System Bold" size="29.0" />
+         </font>
+      </Text>
+      <JFXButton layoutX="298.0" layoutY="261.0" onAction="#studentPaymentOnAction" prefHeight="92.0" prefWidth="489.0" style="-fx-background-color: #1abc9c;" text="Student Payment" />
+      <JFXButton layoutX="298.0" layoutY="417.0" onAction="#teacherSalaryOnAction" prefHeight="92.0" prefWidth="489.0" style="-fx-background-color: #1abc9c;" text="Teacher Salary Report" />
+   </children>
+</AnchorPane>
