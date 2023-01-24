@@ -7,9 +7,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="fullPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1400.0" style="-fx-background-color: #56ccf2;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.StudentMS.controller.ManagerFormController">
+<AnchorPane fx:id="fullPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1400.0" style="-fx-background-color: #2c3e50;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.StudentMS.controller.ManagerFormController">
    <children>
-      <AnchorPane fx:id="dashBordPane" layoutX="-1.0" prefHeight="800.0" prefWidth="249.0" style="-fx-background-color: #42A5F5;">
+      <AnchorPane fx:id="dashBordPane" layoutX="-1.0" prefHeight="800.0" prefWidth="249.0" style="-fx-background-color: #95a5a6;">
          <children>
             <JFXButton layoutX="27.0" layoutY="520.0" onAction="#btnLogout" prefHeight="35.0" prefWidth="195.0" style="-fx-background-color: #1A237F;" text="Logout" textFill="#f8f4f4" />
             <JFXButton layoutX="27.0" layoutY="460.0" onAction="#btnMResult" prefHeight="35.0" prefWidth="195.0" style="-fx-background-color: #1A237F;" text="Manage Results" textFill="#eee7e7" />
@@ -18,7 +18,7 @@
             <JFXButton layoutX="27.0" layoutY="289.0" onAction="#btnMPayments" prefHeight="35.0" prefWidth="195.0" style="-fx-background-color: #1A237F;" text="Manage Payments" textFill="#f8f6f6" />
             <JFXButton layoutX="27.0" layoutY="234.0" onAction="#btnMSubject" prefHeight="35.0" prefWidth="195.0" style="-fx-background-color: #1A237F;" text="Manage Subjects" textFill="#fffefe" />
             <JFXButton layoutX="27.0" layoutY="177.0" onAction="#btnMTeacher" prefHeight="35.0" prefWidth="195.0" style="-fx-background-color: #1A237F;" text="Manage Teachers" textFill="#fcf9f9" />
-            <JFXButton layoutX="27.0" layoutY="123.0" onAction="#btnMStudent" prefHeight="35.0" prefWidth="195.0" style="-fx-background-color: #1A237F;" text="Manage Students" textFill="#f5f3f3" />
+            <JFXButton layoutX="27.0" layoutY="123.0" onAction="#btnMStudent" prefHeight="35.0" prefWidth="195.0" style="-fx-background-color: #42A5F5;" text="Manage Students" textFill="#f5f3f3" />
             <Text fill="#1b1a1a" layoutX="59.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manager">
                <font>
                   <Font name="System Bold" size="32.0" />
