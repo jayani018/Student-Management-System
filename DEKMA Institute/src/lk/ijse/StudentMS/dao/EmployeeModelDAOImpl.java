@@ -12,7 +12,7 @@ public class EmployeeModelDAOImpl {
 
     public static boolean addEmployee(EmployeeDTO employee) throws ClassNotFoundException, SQLException {
 
-        PreparedStatement preparedStatement = DBConnection.getdBConnection().getConnection().prepareStatement("INSERT INTO Employee VALUES (?,?,?,?,?,?,?,?)");
+        PreparedStatement preparedStatement = DBConnection.getdBConnection().getConnection().prepareStatement("INSERT INTO Employee VALUES (?,?,?,?,?,?,?)");
 
         preparedStatement.setObject(1, employee.getEID());
 //        preparedStatement.setObject(2, employee.getUID());
@@ -22,7 +22,8 @@ public class EmployeeModelDAOImpl {
         preparedStatement.setObject(5, employee.getContact());
         preparedStatement.setObject(6, employee.getEmail());
         preparedStatement.setObject(7, employee.getSalary());
-        preparedStatement.setObject(8, employee.getRole());
+//        preparedStatement.setObject(8, employee.getCashOrcard());
+//        preparedStatement.setObject(9, employee.getRole());
 
 
         int executeUpdate = preparedStatement.executeUpdate();
@@ -33,7 +34,7 @@ public class EmployeeModelDAOImpl {
     }
 
     public static boolean updateEmployee(EmployeeDTO employee) throws SQLException, ClassNotFoundException {
-        PreparedStatement preparedStatement = DBConnection.getdBConnection().getConnection().prepareStatement("UPDATE Employee SET NIC=?,name=?,address=?,contact=?,email=?, salary=?,role=?  WHERE EId=?");
+        PreparedStatement preparedStatement = DBConnection.getdBConnection().getConnection().prepareStatement("UPDATE Employee SET NIC=?,name=?,address=?,contact=?,email=?, salary=?/*,role=?*/  WHERE EId=?");
 
 //        preparedStatement.setObject(1, employee.getEID());
         preparedStatement.setObject(1, employee.getNIC());
@@ -42,8 +43,8 @@ public class EmployeeModelDAOImpl {
         preparedStatement.setObject(4, employee.getContact());
         preparedStatement.setObject(5, employee.getEmail());
         preparedStatement.setObject(6, employee.getSalary());
-        preparedStatement.setObject(7, employee.getRole());
-        preparedStatement.setObject(8, employee.getEID());
+       // preparedStatement.setObject(7, employee.getRole());
+        preparedStatement.setObject(7, employee.getEID());
 
         int executeUpdate = preparedStatement.executeUpdate();
         if (executeUpdate > 0) {
@@ -75,7 +76,7 @@ public class EmployeeModelDAOImpl {
             employee.setContact(String.valueOf(resultSet.getObject(5)));
             employee.setEmail(String.valueOf(resultSet.getObject(6)));
             employee.setSalary(Double.parseDouble(String.valueOf(resultSet.getObject(7))));
-            employee.setRole(String.valueOf(resultSet.getObject(8)));
+          //  employee.setRole(String.valueOf(resultSet.getObject(8)));
             return true;
         }
         return false;
@@ -89,8 +90,8 @@ public class EmployeeModelDAOImpl {
 
             while (rst.next()){
 
-               EmployeeDTO employee = new EmployeeDTO(rst.getString("EID"),rst.getString("NIC"),rst.getString("name"),rst.getString("address"),rst.getString("contact"),rst.getString("email"),rst.getDouble("salary"),rst.getString("cashOrcard"),rst.getString("role"));
-
+               EmployeeDTO employee = new EmployeeDTO(rst.getString("EID"),rst.getString("NIC"),rst.getString("name"),rst.getString("address"),rst.getString("contact"),rst.getString("email"),rst.getDouble("salary"));
+//,rst.getString("cashOrcard"),rst.getString("role")
                // employee.setEID(String.valueOf(rst.getString(1)));
                 arrayList.add(employee);
             }

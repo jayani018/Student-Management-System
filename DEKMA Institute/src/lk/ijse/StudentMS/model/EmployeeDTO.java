@@ -8,20 +8,20 @@ public class EmployeeDTO {
     private String  contact;
     private String email;
     private Double salary;
-    private String cashOrcard;
-    private String role;
+//    private String cashOrcard;
+//    private String role;
 
-    public String getCashOrcard() {
-        return cashOrcard;
-    }
+//    public String getCashOrcard() {
+//        return cashOrcard;
+//    }
+//
+//    public void setCashOrcard(String cashOrcard) {
+//        this.cashOrcard = cashOrcard;
+//    }
 
-    public void setCashOrcard(String cashOrcard) {
-        this.cashOrcard = cashOrcard;
-    }
 
 
-
-    public EmployeeDTO(String EID, String NIC, String name, String address, String contact, String email, Double salary, String cashOrcard, String role) {
+    public EmployeeDTO(String EID, String NIC, String name, String address, String contact, String email, String cashOrcard) {
         this.EID = EID;
         this.NIC = NIC;
         this.name = name;
@@ -29,26 +29,26 @@ public class EmployeeDTO {
         this.contact = contact;
         this.email = email;
         this.salary = salary;
-        this.cashOrcard = cashOrcard;
-        this.role = role;
+//        this.cashOrcard = cashOrcard;
+//        this.role = role;
     }
 
     public EmployeeDTO(String id, String nic, String name, String address, String contact, String email, double salary, String cashOrcard) {
 
     }
 
-    public EmployeeDTO() {
+    public EmployeeDTO(String eid, String nic, String name, String address, String contact, String email, double salary) {
 
     }
 
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
+//    public String getRole() {
+//        return role;
+//    }
+//
+//    public void setRole(String role) {
+//        this.role = role;
+//    }
 
     public String getEID() {
         return EID;
@@ -117,8 +117,8 @@ public class EmployeeDTO {
                 ", contact='" + contact + '\'' +
                 ", email='" + email + '\'' +
                 ", salary=" + salary +
-                ", cashOrcard='" + cashOrcard + '\'' +
-                ", role='" + role + '\'' +
+//                ", cashOrcard='" + cashOrcard + '\'' +
+//                ", role='" + role + '\'' +
                 '}';
     }
 

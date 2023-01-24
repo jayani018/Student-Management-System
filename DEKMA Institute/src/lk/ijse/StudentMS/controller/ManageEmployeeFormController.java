@@ -65,7 +65,7 @@ public class ManageEmployeeFormController {
 
         if (role.equals("Manager")) {
             if (!password.equals("") && !userName.equals("")) {
-                EmployeeDTO employee = new EmployeeDTO(id, nic, name, address, contact, email, salary,cashOrCard, role);
+                EmployeeDTO employee = new EmployeeDTO(id, nic, name, address, contact, email, salary/*,cashOrCard, role*/);
                 UserDTO user = new UserDTO(id, userName, password);
                 try {
 
@@ -84,7 +84,7 @@ public class ManageEmployeeFormController {
             }
 
         } else {
-            EmployeeDTO employee = new EmployeeDTO(id, nic, name, address, contact, email, salary,cashOrCard, role);
+            EmployeeDTO employee = new EmployeeDTO(id, nic, name, address, contact, email, salary/*,cashOrCard, role*/);
             try {
                 boolean addEmployee = EmployeeModelDAOImpl.addEmployee(employee);
                 if (addEmployee) {
@@ -114,7 +114,7 @@ public class ManageEmployeeFormController {
 
        if (role.equals("Manager")) {
            if (!password.equals("") && !userName.equals("")) {
-               EmployeeDTO employee = new EmployeeDTO(id, nic, name, address, contact, email, salary,cashOrCard, role);
+               EmployeeDTO employee = new EmployeeDTO(id, nic, name, address, contact, email, salary/*,cashOrCard*/, role);
                UserDTO user = new UserDTO(id, userName, password);
                try {
 
@@ -153,10 +153,11 @@ public class ManageEmployeeFormController {
    }
 
     public void btnDeleteEmployee(ActionEvent actionEvent) {
-        String id = txtId.getText();
+       // String id = txtId.getText();
 
-        EmployeeDTO employee = new EmployeeDTO();
-        employee.setEID(id);
+      //  EmployeeDTO employee = new EmployeeDTO(rst.getString("EID"), rst.getString("NIC"), rst.getString("name"), rst.getString("address"), rst.getString("contact"), rst.getString("email"), rst.getDouble("salary"));
+        EmployeeDTO employee = new EmployeeDTO(txtId.getText(), txtNIC.getText(), txtName.getText(), txtAddress.getText(), txtContact.getText(), txtEmail.getText(), txtSalary.getText());
+        //  employee.setEID(id);
 
 
         try {
@@ -216,7 +217,9 @@ public class ManageEmployeeFormController {
 
     public void btnSearchEmployee(ActionEvent actionEvent) {
         String search = Search.getText();
-        EmployeeDTO employee=new EmployeeDTO();
+      //  EmployeeDTO employee=new EmployeeDTO(rst.getString("EID"), rst.getString("NIC"), rst.getString("name"), rst.getString("address"), rst.getString("contact"), rst.getString("email"), rst.getDouble("salary"));
+        EmployeeDTO employee = new EmployeeDTO(txtId.getText(), txtNIC.getText(), txtName.getText(), txtAddress.getText(), txtContact.getText(), txtEmail.getText(), txtSalary.getText());
+
         employee.setEID(search);
         try {
             boolean searchEmployee = employeeModelDAO.searchEmployee(employee);
@@ -288,8 +291,8 @@ public class ManageEmployeeFormController {
         Email.setCellValueFactory(new PropertyValueFactory<>("Email"));
         CNumber.setCellValueFactory(new PropertyValueFactory<>("Contact No"));
         Salary.setCellValueFactory(new PropertyValueFactory<>("Salary"));
-        cashOrCard.setCellValueFactory(new PropertyValueFactory<>("Cash/Card"));
-        Role.setCellValueFactory(new PropertyValueFactory<>("Role"));
+       // cashOrCard.setCellValueFactory(new PropertyValueFactory<>("Cash/Card"));
+       // Role.setCellValueFactory(new PropertyValueFactory<>("Role"));
         table.setItems(tableLoad(obs));
     }
     public void initial(){

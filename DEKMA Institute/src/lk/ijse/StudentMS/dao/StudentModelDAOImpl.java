@@ -4,10 +4,12 @@ import lk.ijse.StudentMS.db.DBConnection;
 import lk.ijse.StudentMS.model.StudentDTO;
 import lk.ijse.StudentMS.util.CrudUtil;
 
+import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 public class StudentModelDAOImpl {
     public static boolean addStudent (StudentDTO student) throws SQLException, ClassNotFoundException {
@@ -81,6 +83,10 @@ public class StudentModelDAOImpl {
 
     }
 
+    public void initialize(URL location, ResourceBundle resources) {
+// tableLoad();
+    }
+    private void tableInit(){}
 
 
 }
