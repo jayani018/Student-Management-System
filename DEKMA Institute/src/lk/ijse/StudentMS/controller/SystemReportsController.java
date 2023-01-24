@@ -21,7 +21,7 @@ public class SystemReportsController {
 
 
     public void studentPaymentOnAction(ActionEvent actionEvent) {
-        InputStream resource = this.getClass().getResourceAsStream("/lk/ijse/StudentMS/reports/StudentReport1.jrxml");
+        InputStream resource = this.getClass().getResourceAsStream("/lk/ijse/StudentMS/view/reports/StudentReport1.jrxml");
 
       //  HashMap<String,Object> hm = new HashMap<>();
 
@@ -36,7 +36,7 @@ public class SystemReportsController {
     }
 
     public void teacherSalaryOnAction(ActionEvent actionEvent) {
-        InputStream resource = this.getClass().getResourceAsStream("/lk/ijse/StudentMS/reports/TeacherSalaryReports.jrxml");
+        InputStream resource = this.getClass().getResourceAsStream("/lk/ijse/StudentMS/view/reports/TeacherSalaryReports.jrxml");
 
         HashMap<String,Object> hm = new HashMap<>();
 

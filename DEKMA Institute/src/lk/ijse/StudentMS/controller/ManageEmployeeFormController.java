@@ -12,10 +12,10 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.StudentMS.db.DBConnection;
-import lk.ijse.StudentMS.model.EmployeeModel;
-import lk.ijse.StudentMS.model.UserModel;
-import lk.ijse.StudentMS.to.Employee;
-import lk.ijse.StudentMS.to.User;
+import lk.ijse.StudentMS.dao.EmployeeModelDAOImpl;
+import lk.ijse.StudentMS.model.UserModelDAOImpl;
+import lk.ijse.StudentMS.model.EmployeeDTO;
+import lk.ijse.StudentMS.model.UserDTO;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -66,12 +66,12 @@ public class ManageEmployeeFormController {
 
         if (role.equals("Manager")) {
             if (!password.equals("") && !userName.equals("")) {
-                Employee employee = new Employee(id, nic, name, address, contact, email, salary,cashOrCard, role);
-                User user = new User(id, userName, password);
+                EmployeeDTO employee = new EmployeeDTO(id, nic, name, address, contact, email, salary,cashOrCard, role);
+                UserDTO user = new UserDTO(id, userName, password);
                 try {
 
-                    boolean addEmployee = EmployeeModel.addEmployee(employee);
-                    boolean addUser = UserModel.addUser(user);
+                    boolean addEmployee = EmployeeModelDAOImpl.addEmployee(employee);
+                    boolean addUser = UserModelDAOImpl.addUser(user);
                     if (addEmployee && addUser) {
                         Alert alert = new Alert(Alert.AlertType.INFORMATION, "added");
                         alert.show();
@@ -85,9 +85,9 @@ public class ManageEmployeeFormController {
             }
 
         } else {
-            Employee employee = new Employee(id, nic, name, address, contact, email, salary,cashOrCard, role);
+            EmployeeDTO employee = new EmployeeDTO(id, nic, name, address, contact, email, salary,cashOrCard, role);
             try {
-                boolean addEmployee = EmployeeModel.addEmployee(employee);
+                boolean addEmployee = EmployeeModelDAOImpl.addEmployee(employee);
                 if (addEmployee) {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION, "added");
                     alert.show();
@@ -115,12 +115,12 @@ public class ManageEmployeeFormController {
 
        if (role.equals("Manager")) {
            if (!password.equals("") && !userName.equals("")) {
-               Employee employee = new Employee(id, nic, name, address, contact, email, salary,cashOrCard, role);
-               User user = new User(id, userName, password);
+               EmployeeDTO employee = new EmployeeDTO(id, nic, name, address, contact, email, salary,cashOrCard, role);
+               UserDTO user = new UserDTO(id, userName, password);
                try {
 
-                   boolean updateEmployee = EmployeeModel.updateEmployee(employee);
-                   boolean addUser = UserModel.addUser(user);
+                   boolean updateEmployee = EmployeeModelDAOImpl.updateEmployee(employee);
+                   boolean addUser = UserModelDAOImpl.addUser(user);
                    if (updateEmployee && addUser) {
                        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Update");
                        alert.show();
@@ -135,10 +135,10 @@ public class ManageEmployeeFormController {
 
        } else {
 
-           Employee employee = new Employee(id, nic, name, address, contact, email, salary,cashOrCard);
+           EmployeeDTO employee = new EmployeeDTO(id, nic, name, address, contact, email, salary,cashOrCard);
 
            try {
-               boolean updateEmployee = EmployeeModel.updateEmployee(employee);
+               boolean updateEmployee = EmployeeModelDAOImpl.updateEmployee(employee);
                if (updateEmployee) {
                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Update is successful");
                    alert.show();
@@ -156,12 +156,12 @@ public class ManageEmployeeFormController {
     public void btnDeleteEmployee(ActionEvent actionEvent) {
         String id = txtId.getText();
 
-        Employee employee = new Employee();
+        EmployeeDTO employee = new EmployeeDTO();
         employee.setEID(id);
 
 
         try {
-            boolean deleteEmployee = EmployeeModel.deleteEmployee(employee);
+            boolean deleteEmployee = EmployeeModelDAOImpl.deleteEmployee(employee);
             if (deleteEmployee) {
                 Alert alert=new Alert(Alert.AlertType.INFORMATION,"Delete is successful");
                 alert.show();
@@ -217,10 +217,10 @@ public class ManageEmployeeFormController {
 
     public void btnSearchEmployee(ActionEvent actionEvent) {
         String search = Search.getText();
-        Employee employee=new Employee();
+        EmployeeDTO employee=new EmployeeDTO();
         employee.setEID(search);
         try {
-            boolean searchEmployee = EmployeeModel.searchEmployee(employee);
+            boolean searchEmployee = EmployeeModelDAOImpl.searchEmployee(employee);
             if (searchEmployee) {
                 txtId.setText(search);
                 txtNIC.setText(employee.getNIC());
@@ -246,14 +246,14 @@ public class ManageEmployeeFormController {
     public void searchOnAction(ActionEvent actionEvent) {
     }
 
-    ObservableList<Employee> obs = FXCollections.observableArrayList();
-    private ObservableList tableLoad(ObservableList<Employee> obs) {
+    ObservableList<EmployeeDTO> obs = FXCollections.observableArrayList();
+    private ObservableList tableLoad(ObservableList<EmployeeDTO> obs) {
         try {
             Connection connection = DBConnection.getdBConnection().getConnection();
             PreparedStatement pst = connection.prepareStatement("select * from Employee");
             ResultSet resultSet = pst.executeQuery();
             while (resultSet.next()) {
-                this.obs.add(new Employee(
+                this.obs.add(new EmployeeDTO(
                                 resultSet.getString(1),
                                 resultSet.getString(2),
                         resultSet.getString(3),

@@ -8,10 +8,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
-import lk.ijse.StudentMS.model.StudentAttendanceModel;
-import lk.ijse.StudentMS.model.StudentModel;
-import lk.ijse.StudentMS.to.Student;
-import lk.ijse.StudentMS.to.StudentAttendance;
+import lk.ijse.StudentMS.dao.StudentAttendanceModelDAOImpl;
+import lk.ijse.StudentMS.dao.StudentModelDAOImpl;
+import lk.ijse.StudentMS.model.StudentDTO;
+import lk.ijse.StudentMS.model.StudentAttendance;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -34,7 +34,7 @@ public class StudentAttendanceFormController {
         String time = txtTime.getText();
         StudentAttendance studentAttendance = new StudentAttendance(studentId,date,time);
         try {
-            boolean addAttendance = StudentAttendanceModel.addAttendance(studentAttendance);
+            boolean addAttendance = StudentAttendanceModelDAOImpl.addAttendance(studentAttendance);
             if (addAttendance) {
                 Alert alert=new Alert(Alert.AlertType.INFORMATION,"added");
                 alert.show();
@@ -57,7 +57,7 @@ public class StudentAttendanceFormController {
     private void cmbLoadData() {
         try {
 
-            ArrayList<Student> arrayList = StudentModel.loadStudent();
+            ArrayList<StudentDTO> arrayList = StudentModelDAOImpl.loadStudent();
 
             String[] Student = new String[arrayList.size()];
 

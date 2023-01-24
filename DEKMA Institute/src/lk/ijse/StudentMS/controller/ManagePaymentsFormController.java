@@ -10,10 +10,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import lk.ijse.StudentMS.model.PaymentsModel;
-import lk.ijse.StudentMS.model.StudentModel;
-import lk.ijse.StudentMS.to.Payments;
-import lk.ijse.StudentMS.to.Student;
+import lk.ijse.StudentMS.dao.PaymentsModelDAOImpl;
+import lk.ijse.StudentMS.dao.StudentModelDAOImpl;
+import lk.ijse.StudentMS.model.PaymentsDTO;
+import lk.ijse.StudentMS.model.StudentDTO;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -41,11 +41,11 @@ public class ManagePaymentsFormController {
         String amount = txtAmount.getText();
         String paymentsMonth = txtPaymentsMonth.getText();
         String time = txtTime.getText();
-        Payments payments = new Payments(id,cardNo,amount,paymentsMonth,time);
+        PaymentsDTO payments = new PaymentsDTO(id,cardNo,amount,paymentsMonth,time);
 
 
         try {
-            boolean addPayments = PaymentsModel.addPayments(payments);
+            boolean addPayments = PaymentsModelDAOImpl.addPayments(payments);
             if (addPayments){
                 Alert alert=new Alert(Alert.AlertType.CONFIRMATION,"Payment add is successful");
                 alert.show();
@@ -66,10 +66,10 @@ public class ManagePaymentsFormController {
         String paymentsMonth = txtPaymentsMonth.getText();
         String time = txtTime.getText();
 
-        Payments payments = new Payments(studentId,cardNo,amount,paymentsMonth,time);
+        PaymentsDTO payments = new PaymentsDTO(studentId,cardNo,amount,paymentsMonth,time);
 
         try {
-            boolean updatePayments = PaymentsModel.updatePayments(payments);
+            boolean updatePayments = PaymentsModelDAOImpl.updatePayments(payments);
             if (updatePayments) {
                 Alert alert=new Alert(Alert.AlertType.INFORMATION,"Update is successful");
                 alert.show();
@@ -89,8 +89,8 @@ public class ManagePaymentsFormController {
     }
 
     private void cmbLoadData() throws SQLException, ClassNotFoundException {
-        ArrayList<Student> arrayList = StudentModel.loadStudent();
-        for (Student student: arrayList) {
+        ArrayList<StudentDTO> arrayList = StudentModelDAOImpl.loadStudent();
+        for (StudentDTO student: arrayList) {
             combStudentId.getItems().add(student.getSID());
         }
     }
@@ -112,10 +112,10 @@ public class ManagePaymentsFormController {
     }
 
     private void tableLoad() {
-        ObservableList<Payments> StudentList = FXCollections.observableArrayList();
+        ObservableList<PaymentsDTO> StudentList = FXCollections.observableArrayList();
         try {
-            ArrayList<Payments> StudentData = PaymentsModel.loadPayments();
-            for (Payments student : StudentData) {
+            ArrayList<PaymentsDTO> StudentData = PaymentsModelDAOImpl.loadPayments();
+            for (PaymentsDTO student : StudentData) {
                 StudentList.add(student);
             }
         } catch (SQLException | ClassNotFoundException x) {

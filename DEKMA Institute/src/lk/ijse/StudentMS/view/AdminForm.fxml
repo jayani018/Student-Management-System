@@ -30,7 +30,7 @@
          <children>
             <ImageView fitHeight="705.0" fitWidth="907.0" layoutX="81.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/image/240_F_76023462_pbOtfPerndr3gt53MM8BbAuKdUR7GS5w.jpg" />
+                  <Image url="@assets/image/240_F_76023462_pbOtfPerndr3gt53MM8BbAuKdUR7GS5w.jpg" />
                </image>
             </ImageView>
          </children></AnchorPane>

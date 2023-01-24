@@ -14,10 +14,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
-import lk.ijse.StudentMS.model.SubjectModel;
-import lk.ijse.StudentMS.model.TeacherModel;
-import lk.ijse.StudentMS.to.Subject;
-import lk.ijse.StudentMS.to.Teacher;
+import lk.ijse.StudentMS.dao.SubjectModelDAOImpl;
+import lk.ijse.StudentMS.dao.TeacherModelDAOImpl;
+import lk.ijse.StudentMS.model.SubjectDTO;
+import lk.ijse.StudentMS.model.TeacherDTO;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -110,10 +110,10 @@ public class ManageTeacherFormController {
     }
 
     private void loadTableData() {
-        ObservableList<Teacher> TeacherList = FXCollections.observableArrayList();
+        ObservableList<TeacherDTO> TeacherList = FXCollections.observableArrayList();
         try {
-            ArrayList<Teacher> TeacherData = TeacherModel.loadTeacher();
-            for (Teacher teacher : TeacherData) {
+            ArrayList<TeacherDTO> TeacherData = TeacherModelDAOImpl.loadTeacher();
+            for (TeacherDTO teacher : TeacherData) {
                 TeacherList.add(teacher);
             }
         } catch (SQLException | ClassNotFoundException x) {
@@ -123,9 +123,9 @@ public class ManageTeacherFormController {
     }
 
     private void cmbLoadData() throws SQLException, ClassNotFoundException {
-        ArrayList<Subject> arrayList = SubjectModel.loadSubject();
+        ArrayList<SubjectDTO> arrayList = SubjectModelDAOImpl.loadSubject();
         ObservableList obList = FXCollections.observableArrayList();
-        for (Subject emp : arrayList) {
+        for (SubjectDTO emp : arrayList) {
             obList.add(emp.getSUBID());
         }
         combSubId.setItems(obList);
@@ -140,9 +140,9 @@ public class ManageTeacherFormController {
         String contactNo = txtContactNo.getText();
         String email = txtEmail.getText();
         double salary = Double.parseDouble(txtSalary.getText());
-        Teacher teacher = new Teacher(id, subId, NIC, name, address, contactNo, email, salary);
+        TeacherDTO teacher = new TeacherDTO(id, subId, NIC, name, address, contactNo, email, salary);
         try {
-            boolean addTeacher = TeacherModel.addTeacher(teacher);
+            boolean addTeacher = TeacherModelDAOImpl.addTeacher(teacher);
             if (addTeacher) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "added");
                 alert.show();
@@ -157,10 +157,10 @@ public class ManageTeacherFormController {
 
     public void btnSearch(ActionEvent actionEvent) {
         String search = Search.getText();
-        lk.ijse.StudentMS.to.Teacher teacher = new Teacher();
+        TeacherDTO teacher = new TeacherDTO();
         teacher.setTID(search);
         try {
-            boolean searchTeacher = TeacherModel.searchTeacher(teacher);
+            boolean searchTeacher = TeacherModelDAOImpl.searchTeacher(teacher);
             if (searchTeacher) {
                 combSubId.setValue(teacher.getSUBID());
                 txtId.setText(search);
@@ -184,10 +184,10 @@ public class ManageTeacherFormController {
 
     public void txtSearchOnAction(ActionEvent actionEvent) {
         String search = Search.getText();
-        lk.ijse.StudentMS.to.Teacher teacher = new Teacher();
+        TeacherDTO teacher = new TeacherDTO();
         teacher.setTID(search);
         try {
-            boolean searchTeacher = TeacherModel.searchTeacher(teacher);
+            boolean searchTeacher = TeacherModelDAOImpl.searchTeacher(teacher);
             if (searchTeacher) {
                 combSubId.setValue(teacher.getSUBID());
                 txtId.setText(search);
@@ -219,10 +219,10 @@ public class ManageTeacherFormController {
         String contactNo = txtContactNo.getText();
         String email = txtEmail.getText();
         double salary = Double.parseDouble(txtSalary.getText());
-        Teacher teacher = new Teacher(id, subId, NIC, name, address, contactNo, email, salary);
+        TeacherDTO teacher = new TeacherDTO(id, subId, NIC, name, address, contactNo, email, salary);
 
         try {
-            boolean updateTeach = TeacherModel.updateTeacher(teacher);
+            boolean updateTeach = TeacherModelDAOImpl.updateTeacher(teacher);
             if (updateTeach) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Update is successful");
                 alert.show();
@@ -249,10 +249,10 @@ public class ManageTeacherFormController {
         String contactNo = txtContactNo.getText();
         String email = txtEmail.getText();
         double salary = Double.parseDouble(txtSalary.getText());
-        Teacher teacher = new Teacher(id, subId, NIC, name, address, contactNo, email, salary);
+        TeacherDTO teacher = new TeacherDTO(id, subId, NIC, name, address, contactNo, email, salary);
 
         try {
-            boolean isDeleted = TeacherModel.deleteTeacher(teacher);
+            boolean isDeleted = TeacherModelDAOImpl.deleteTeacher(teacher);
             if (isDeleted){
                 new Alert(Alert.AlertType.CONFIRMATION, "Student Deleted Successfully!").show();
                 loadTableData();

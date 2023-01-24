@@ -13,10 +13,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
-import lk.ijse.StudentMS.model.EmployeeModel;
-import lk.ijse.StudentMS.model.StudentModel;
-import lk.ijse.StudentMS.to.Employee;
-import lk.ijse.StudentMS.to.Student;
+import lk.ijse.StudentMS.dao.EmployeeModelDAOImpl;
+import lk.ijse.StudentMS.dao.StudentModelDAOImpl;
+import lk.ijse.StudentMS.model.EmployeeDTO;
+import lk.ijse.StudentMS.model.StudentDTO;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -115,10 +115,10 @@ public class ManageStudentsFormController {
 
 
     private void LoadTableData() {
-        ObservableList<Student> StudentList = FXCollections.observableArrayList();
+        ObservableList<StudentDTO> StudentList = FXCollections.observableArrayList();
         try {
-            ArrayList<Student> StudentData = StudentModel.loadStudent();
-            for (Student student : StudentData) {
+            ArrayList<StudentDTO> StudentData = StudentModelDAOImpl.loadStudent();
+            for (StudentDTO student : StudentData) {
                 StudentList.add(student);
             }
         } catch (SQLException | ClassNotFoundException x) {
@@ -131,12 +131,12 @@ public class ManageStudentsFormController {
     public void btnUpdateStudent(ActionEvent actionEvent) {
 
 
-        Student student = new Student(combEmployeeId.getValue(), txtID.getText(), txtName.getText(), txtEmail.getText(),
+        StudentDTO student = new StudentDTO(combEmployeeId.getValue(), txtID.getText(), txtName.getText(), txtEmail.getText(),
                 txtEY.getText(), txtNIC.getText(), txtAdress.getText(), txtCNo.getText(), txtStream.getText());
 
 
         try {
-            boolean updateStudent = StudentModel.updateStudent(student);
+            boolean updateStudent = StudentModelDAOImpl.updateStudent(student);
             if (updateStudent) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Update is successful");
                 alert.show();
@@ -153,9 +153,9 @@ public class ManageStudentsFormController {
 
 
     private void cmbLoadData() throws SQLException, ClassNotFoundException {
-        ArrayList<Employee> arrayList = EmployeeModel.loadEmployee();
+        ArrayList<EmployeeDTO> arrayList = EmployeeModelDAOImpl.loadEmployee();
         ObservableList obList = FXCollections.observableArrayList();
-        for (Employee emp : arrayList) {
+        for (EmployeeDTO emp : arrayList) {
             obList.add(emp.getEID());
         }
         combEmployeeId.setItems(obList);
@@ -164,10 +164,10 @@ public class ManageStudentsFormController {
 
     public void btnSearch(ActionEvent actionEvent) {
         String search = Search.getText();
-        lk.ijse.StudentMS.to.Student student = new Student();
+        StudentDTO student = new StudentDTO();
         student.setSID(search);
         try {
-            boolean searchStudent = StudentModel.searchStudent(student);
+            boolean searchStudent = StudentModelDAOImpl.searchStudent(student);
             if (searchStudent) {
                 combEmployeeId.setValue(student.getEID());
                 txtID.setText(search);
@@ -205,11 +205,11 @@ public class ManageStudentsFormController {
 
     public void btnAddStudent() {
 
-        lk.ijse.StudentMS.to.Student student = new Student(combEmployeeId.getValue(), txtID.getText(), txtName.getText(), txtEmail.getText(),
+        StudentDTO student = new StudentDTO(combEmployeeId.getValue(), txtID.getText(), txtName.getText(), txtEmail.getText(),
                 txtEY.getText(), txtNIC.getText(), txtAdress.getText(), txtCNo.getText(), txtStream.getText());
 
         try {
-            boolean isAdded = StudentModel.addStudent(student);
+            boolean isAdded = StudentModelDAOImpl.addStudent(student);
 
             if (isAdded) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Student Added!").show();
@@ -224,11 +224,11 @@ public class ManageStudentsFormController {
     }
 
     public void btnDeleteStudent(ActionEvent actionEvent) {
-        Student student = new Student(combEmployeeId.getValue(), txtID.getText(), txtName.getText(), txtEmail.getText(),
+        StudentDTO student = new StudentDTO(combEmployeeId.getValue(), txtID.getText(), txtName.getText(), txtEmail.getText(),
                 txtEY.getText(), txtNIC.getText(), txtAdress.getText(), txtCNo.getText(), txtStream.getText());
 
         try {
-            boolean isDeleted = StudentModel.deleteStudent(student);
+            boolean isDeleted = StudentModelDAOImpl.deleteStudent(student);
             if (isDeleted){
                 new Alert(Alert.AlertType.CONFIRMATION, "Student Deleted Successfully!").show();
                 LoadTableData();

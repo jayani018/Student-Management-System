@@ -10,9 +10,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.StudentMS.db.DBConnection;
-import lk.ijse.StudentMS.model.SubjectModel;
+import lk.ijse.StudentMS.dao.SubjectModelDAOImpl;
 import lk.ijse.StudentMS.tm.SubjectTm;
-import lk.ijse.StudentMS.to.Subject;
+import lk.ijse.StudentMS.model.SubjectDTO;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -33,10 +33,10 @@ public class ManageSubjectController {
     public void btnAddSubject(ActionEvent actionEvent) throws IOException {
         String id = txtSubId.getText();
         String name = txtName.getText();
-        Subject subject = new Subject(id,name);
+        SubjectDTO subject = new SubjectDTO(id,name);
 
         try {
-            boolean addSubject = SubjectModel.addSubject(subject);
+            boolean addSubject = SubjectModelDAOImpl.addSubject(subject);
             if (addSubject){
                 Alert alert=new Alert(Alert.AlertType.CONFIRMATION,"Subject add is successful");
                 alert.show();
@@ -57,10 +57,10 @@ public class ManageSubjectController {
         String subId = txtSubId.getText();
         String name = txtName.getText();
 
-        Subject subject=new Subject(subId,name);
+        SubjectDTO subject=new SubjectDTO(subId,name);
 
         try {
-            boolean updateSubject = SubjectModel.updateSubject(subject);
+            boolean updateSubject = SubjectModelDAOImpl.updateSubject(subject);
             if (updateSubject) {
                 Alert alert=new Alert(Alert.AlertType.INFORMATION,"Update is successful");
                 alert.show();
@@ -79,7 +79,7 @@ public class ManageSubjectController {
        /* Subject subject=new Subject();
         subject.setSUBID(subId);*/
         try {
-            boolean deleteSubject = SubjectModel.deleteSubject(subId);//(subject);
+            boolean deleteSubject = SubjectModelDAOImpl.deleteSubject(subId);//(subject);
             if (deleteSubject) {
                 Alert alert=new Alert(Alert.AlertType.INFORMATION,"Delete is successful");
                 alert.show();
@@ -100,10 +100,10 @@ public class ManageSubjectController {
     }*/
     public void txtSearchOnAction(ActionEvent actionEvent) {
         String search = Search.getText();
-        Subject subject=new Subject();
+        SubjectDTO subject=new SubjectDTO();
         subject.setSUBID(search);
         try {
-            boolean searchSubject = SubjectModel.searchSubject(subject);
+            boolean searchSubject = SubjectModelDAOImpl.searchSubject(subject);
             if (searchSubject) {
                 txtSubId.setText(search);
                 txtName.setText(subject.getSubName());
@@ -120,10 +120,10 @@ public class ManageSubjectController {
 
     public void btnSearch(ActionEvent actionEvent) {
         String search = Search.getText();
-        Subject subject=new Subject();
+        SubjectDTO subject=new SubjectDTO();
         subject.setSUBID(search);
         try {
-            boolean searchSubject = SubjectModel.searchSubject(subject);
+            boolean searchSubject = SubjectModelDAOImpl.searchSubject(subject);
             if (searchSubject) {
                 txtSubId.setText(search);
                 txtName.setText(subject.getSubName());

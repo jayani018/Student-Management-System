@@ -11,7 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import lk.ijse.StudentMS.to.User;
+import lk.ijse.StudentMS.model.UserDTO;
 
 import java.io.IOException;
 import java.util.regex.Matcher;
@@ -60,7 +60,7 @@ public class LoginFormController<userName> {
         String name = txtName.getText();
         String password = txtPassword.getText();
 
-        User employee = new User();
+        UserDTO employee = new UserDTO();
 
 
         if (Pattern.compile("^[a-zA-Z0-9]{0,10}$").matcher(txtName.getText()).matches()) {
