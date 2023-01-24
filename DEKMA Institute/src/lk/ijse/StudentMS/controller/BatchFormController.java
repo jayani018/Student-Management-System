@@ -29,6 +29,7 @@ public class BatchFormController {
     public JFXTextField txtBatchId;
     public JFXTextField txtYear;
 
+    BatchModelDAOImpl batchModelDAO = new BatchModelDAOImpl();
 
     public void btnAddBatch(ActionEvent actionEvent) {
         String studentId = String.valueOf(combStudentId.getValue());
@@ -37,10 +38,11 @@ public class BatchFormController {
         BatchDTO batch = new BatchDTO(studentId,id,year);
 
         try {
-            boolean addBatch = BatchModelDAOImpl.addBatch(batch);
+            boolean addBatch = batchModelDAO.addBatch(batch);
             if (addBatch) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "added");
                 alert.show();
+                loadTableData();
                 tableInit();
             }
 
@@ -54,10 +56,11 @@ public class BatchFormController {
         BatchDTO batch = new BatchDTO();
         batch.setBID(batchId);
         try {
-            boolean deleteBatch = BatchModelDAOImpl.deleteBatch(batch);
+            boolean deleteBatch = batchModelDAO.deleteBatch(batch);
             if (deleteBatch) {
                 Alert alert=new Alert(Alert.AlertType.INFORMATION,"Delete is successful");
                 alert.show();
+                loadTableData();
                 txtBatchId.setText(null);
                 txtYear.setText(null);
             }else {
@@ -78,10 +81,11 @@ public class BatchFormController {
         BatchDTO batch=new BatchDTO(studentId,BID,year);
 
         try {
-            boolean updateBatch = BatchModelDAOImpl.updateBatch(batch);
+            boolean updateBatch = batchModelDAO.updateBatch(batch);
             if (updateBatch) {
                 Alert alert=new Alert(Alert.AlertType.INFORMATION,"Update is successful");
                 alert.show();
+                loadTableData();
             }else{
                 Alert alert=new Alert(Alert.AlertType.ERROR,"error");
                 alert.show();
@@ -97,7 +101,7 @@ public class BatchFormController {
             BatchDTO batch=new BatchDTO();
             batch.setBID(search);
             try {
-                boolean searchBatch = BatchModelDAOImpl.searchBatch(batch);
+                boolean searchBatch = batchModelDAO.searchBatch(batch);
                 if (searchBatch) {
                     txtBatchId.setText(search);
                     txtYear.setText(batch.getYear());
@@ -116,6 +120,20 @@ public class BatchFormController {
    /* public void txtSearchOnAction(ActionEvent actionEvent) {
     }
 */
+
+    private void loadTableData() {
+        ObservableList<BatchDTO> BatchList = FXCollections.observableArrayList();
+        try {
+            ArrayList<BatchDTO> batchData = batchModelDAO.loadBatch();
+            for (BatchDTO batch : batchData) {
+                BatchList.add(batch);
+            }
+        } catch (SQLException | ClassNotFoundException x) {
+            x.printStackTrace();
+        }
+        tblStudentBatch.setItems(BatchList);
+    }
+
     private void cmbLoadData() {
         try {
 
@@ -163,5 +181,6 @@ public class BatchFormController {
         SID.setCellValueFactory(new PropertyValueFactory<>("SID"));
         cmbLoadData();
         tableInit();
+        loadTableData();
     }
 }

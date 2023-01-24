@@ -11,17 +11,14 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import lk.ijse.StudentMS.db.DBConnection;
 import lk.ijse.StudentMS.dao.EmployeeModelDAOImpl;
-import lk.ijse.StudentMS.model.UserModelDAOImpl;
 import lk.ijse.StudentMS.model.EmployeeDTO;
 import lk.ijse.StudentMS.model.UserDTO;
+import lk.ijse.StudentMS.model.UserModelDAOImpl;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class ManageEmployeeFormController {
     public AnchorPane pane;
@@ -52,6 +49,8 @@ public class ManageEmployeeFormController {
     public JFXTextField txtPassword;
     private String role;
 
+    EmployeeModelDAOImpl employeeModelDAO = new EmployeeModelDAOImpl();
+
     public void btnAddEmployee(ActionEvent actionEvent) throws IOException {
         String id = txtId.getText();
         String nic = txtNIC.getText();
@@ -70,7 +69,7 @@ public class ManageEmployeeFormController {
                 UserDTO user = new UserDTO(id, userName, password);
                 try {
 
-                    boolean addEmployee = EmployeeModelDAOImpl.addEmployee(employee);
+                    boolean addEmployee = employeeModelDAO.addEmployee(employee);
                     boolean addUser = UserModelDAOImpl.addUser(user);
                     if (addEmployee && addUser) {
                         Alert alert = new Alert(Alert.AlertType.INFORMATION, "added");
@@ -119,7 +118,7 @@ public class ManageEmployeeFormController {
                UserDTO user = new UserDTO(id, userName, password);
                try {
 
-                   boolean updateEmployee = EmployeeModelDAOImpl.updateEmployee(employee);
+                   boolean updateEmployee = employeeModelDAO.updateEmployee(employee);
                    boolean addUser = UserModelDAOImpl.addUser(user);
                    if (updateEmployee && addUser) {
                        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Update");
@@ -161,7 +160,7 @@ public class ManageEmployeeFormController {
 
 
         try {
-            boolean deleteEmployee = EmployeeModelDAOImpl.deleteEmployee(employee);
+            boolean deleteEmployee = employeeModelDAO.deleteEmployee(employee);
             if (deleteEmployee) {
                 Alert alert=new Alert(Alert.AlertType.INFORMATION,"Delete is successful");
                 alert.show();
@@ -220,7 +219,7 @@ public class ManageEmployeeFormController {
         EmployeeDTO employee=new EmployeeDTO();
         employee.setEID(search);
         try {
-            boolean searchEmployee = EmployeeModelDAOImpl.searchEmployee(employee);
+            boolean searchEmployee = employeeModelDAO.searchEmployee(employee);
             if (searchEmployee) {
                 txtId.setText(search);
                 txtNIC.setText(employee.getNIC());
@@ -248,26 +247,33 @@ public class ManageEmployeeFormController {
 
     ObservableList<EmployeeDTO> obs = FXCollections.observableArrayList();
     private ObservableList tableLoad(ObservableList<EmployeeDTO> obs) {
+       // ArrayList<EmployeeDTO> arrayList=new ArrayList<>();
         try {
-            Connection connection = DBConnection.getdBConnection().getConnection();
-            PreparedStatement pst = connection.prepareStatement("select * from Employee");
-            ResultSet resultSet = pst.executeQuery();
-            while (resultSet.next()) {
-                this.obs.add(new EmployeeDTO(
-                                resultSet.getString(1),
-                                resultSet.getString(2),
-                        resultSet.getString(3),
-                        resultSet.getString(4),
-                        resultSet.getString(5),
-                        resultSet.getString(6),
-                        resultSet.getDouble(7),
-                        resultSet.getString(8),
-                        resultSet.getString(9)
+            ArrayList<EmployeeDTO> employeeList=employeeModelDAO.loadEmployee();
+            for (EmployeeDTO employee :employeeList ) {
+                employeeList.add(employee);
 
-                        )
-
-                );
             }
+//            Connection connection = DBConnection.getdBConnection().getConnection();
+//            PreparedStatement pst = connection.prepareStatement("select * from Employee");
+//            ResultSet resultSet = pst.executeQuery();
+
+//            while (resultSet.next()) {
+//                this.obs.add(new EmployeeDTO(
+//                                resultSet.getString(1),
+//                                resultSet.getString(2),
+//                        resultSet.getString(3),
+//                        resultSet.getString(4),
+//                        resultSet.getString(5),
+//                        resultSet.getString(6),
+//                        resultSet.getDouble(7),
+//                        resultSet.getString(8),
+//                        resultSet.getString(9)
+//
+//                        )
+//
+//                );
+//            }
         } catch (SQLException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
         }

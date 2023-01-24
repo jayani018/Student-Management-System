@@ -47,6 +47,7 @@ public class ManageTeacherFormController {
     public JFXButton btnDelete;
     public JFXButton btnSearch;
     LinkedHashMap<TextField, Pattern> map = new LinkedHashMap<>();
+    TeacherModelDAOImpl teacherModelDAO = new TeacherModelDAOImpl();
 
     public void initialize() {
 
@@ -112,7 +113,7 @@ public class ManageTeacherFormController {
     private void loadTableData() {
         ObservableList<TeacherDTO> TeacherList = FXCollections.observableArrayList();
         try {
-            ArrayList<TeacherDTO> TeacherData = TeacherModelDAOImpl.loadTeacher();
+            ArrayList<TeacherDTO> TeacherData = teacherModelDAO.loadTeacher();
             for (TeacherDTO teacher : TeacherData) {
                 TeacherList.add(teacher);
             }
@@ -141,8 +142,11 @@ public class ManageTeacherFormController {
         String email = txtEmail.getText();
         double salary = Double.parseDouble(txtSalary.getText());
         TeacherDTO teacher = new TeacherDTO(id, subId, NIC, name, address, contactNo, email, salary);
+        // CustomerDAO customerDAO = new CustomerDAOImpl();
+       // customerDAO.addCustomer(new CustomerDTO(id,name,address));
+
         try {
-            boolean addTeacher = TeacherModelDAOImpl.addTeacher(teacher);
+            boolean addTeacher = teacherModelDAO.addTeacher(teacher);
             if (addTeacher) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "added");
                 alert.show();
@@ -160,7 +164,9 @@ public class ManageTeacherFormController {
         TeacherDTO teacher = new TeacherDTO();
         teacher.setTID(search);
         try {
-            boolean searchTeacher = TeacherModelDAOImpl.searchTeacher(teacher);
+
+            boolean searchTeacher = teacherModelDAO.searchTeacher(teacher);
+           // boolean searchTeacher = TeacherModelDAOImpl.searchTeacher(teacher);
             if (searchTeacher) {
                 combSubId.setValue(teacher.getSUBID());
                 txtId.setText(search);
@@ -187,7 +193,7 @@ public class ManageTeacherFormController {
         TeacherDTO teacher = new TeacherDTO();
         teacher.setTID(search);
         try {
-            boolean searchTeacher = TeacherModelDAOImpl.searchTeacher(teacher);
+            boolean searchTeacher = teacherModelDAO.searchTeacher(teacher);
             if (searchTeacher) {
                 combSubId.setValue(teacher.getSUBID());
                 txtId.setText(search);
@@ -222,7 +228,7 @@ public class ManageTeacherFormController {
         TeacherDTO teacher = new TeacherDTO(id, subId, NIC, name, address, contactNo, email, salary);
 
         try {
-            boolean updateTeach = TeacherModelDAOImpl.updateTeacher(teacher);
+            boolean updateTeach = teacherModelDAO.updateTeacher(teacher);
             if (updateTeach) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Update is successful");
                 alert.show();
@@ -252,7 +258,7 @@ public class ManageTeacherFormController {
         TeacherDTO teacher = new TeacherDTO(id, subId, NIC, name, address, contactNo, email, salary);
 
         try {
-            boolean isDeleted = TeacherModelDAOImpl.deleteTeacher(teacher);
+            boolean isDeleted = teacherModelDAO.deleteTeacher(teacher);
             if (isDeleted){
                 new Alert(Alert.AlertType.CONFIRMATION, "Student Deleted Successfully!").show();
                 loadTableData();

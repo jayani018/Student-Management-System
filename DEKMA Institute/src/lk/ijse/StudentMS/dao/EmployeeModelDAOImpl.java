@@ -85,12 +85,13 @@ public class EmployeeModelDAOImpl {
     public static ArrayList<EmployeeDTO> loadEmployee() throws SQLException, ClassNotFoundException {
         ArrayList<EmployeeDTO> arrayList=new ArrayList<>();
         PreparedStatement preparedStatement = DBConnection.getdBConnection().getConnection().prepareStatement("SELECT * FROM Employee");
-        ResultSet resultSet = preparedStatement.executeQuery();
+        ResultSet rst = preparedStatement.executeQuery();
 
-            while (resultSet.next()){
-                EmployeeDTO employee = new EmployeeDTO();
+            while (rst.next()){
 
-                employee.setEID(String.valueOf(resultSet.getString(1)));
+               EmployeeDTO employee = new EmployeeDTO(rst.getString("EID"),rst.getString("NIC"),rst.getString("name"),rst.getString("address"),rst.getString("contact"),rst.getString("email"),rst.getDouble("salary"),rst.getString("cashOrcard"),rst.getString("role"));
+
+               // employee.setEID(String.valueOf(rst.getString(1)));
                 arrayList.add(employee);
             }
             return arrayList;
